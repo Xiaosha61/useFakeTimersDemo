@@ -26,9 +26,9 @@ export class ClearableSinon {
     }
 
     restore(): void {
-        this._clearFakeTimers();
+        this._clearFakeTimers(); // clear all fake timers before restoring sandbox(including the fake clock)
         this._sandbox.restore();
-        this._clearOriginalPendingTimers();
+        this._clearOriginalPendingTimers(); // clear all real timers after restoring sandbox (to stop all timers set up before using fake timers)
     }
 
     activateFakeTimer(): sinon.SinonFakeTimers {
